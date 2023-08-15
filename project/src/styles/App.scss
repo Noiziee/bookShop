@@ -8,7 +8,15 @@
 
 
 // Components
+<<<<<<< HEAD
 @import './layout.scss';
 @import './header.scss';
 @import './title.scss';
 @import './footer.scss';
+=======
+@import '../components/Layout/Layout.scss';
+@import '../components/Header/Header.scss';
+@import '../components/Book/Book.scss';
+@import '../components/Title/Title.scss';
+@import '../components/Footer/Footer.scss';
+>>>>>>> 75897d6 (feat: solution router)

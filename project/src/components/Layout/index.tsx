@@ -1,18 +1,18 @@
-import { Container } from '../Container'
+import { ReactElement } from 'react'
+
+import { Outlet } from 'react-router-dom'
 import { Header } from '../Header'
 import { Main } from '../Main'
 import { Footer } from '../Footer'
 
 
-export function Layout() {
+export function Layout(): ReactElement {
   return (
     <div className="layout">
       <Header />
-      <Main>
-        <Container>
-          Main
-        </Container>
-      </Main>
+        <Main>
+          <Outlet />
+        </Main>
       <Footer />
     </div>
   )
