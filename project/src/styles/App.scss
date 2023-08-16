@@ -8,8 +8,7 @@
 
 
 // Components
-@import '../components/Layout/Layout.scss';
-@import '../components/Header/Header.scss';
-@import '../components/Card/Card.scss';
-@import '../components/Title/Title.scss';
-@import '../components/Footer/Footer.scss';
+@import './layout.scss';
+@import './header.scss';
+@import './title.scss';
+@import './footer.scss';
