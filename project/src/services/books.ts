@@ -16,7 +16,7 @@ export type Books = {
   books: Book[]
 }
 
-export type BookResponse = {
+export type BooksState = {
   error: string
   title: string
   subtitle: string
@@ -39,7 +39,7 @@ export const requestNewBooks = async (): Promise<Books> => {
   return data as Books
 }
 
-export const requestBookByIsbn13 = async (isbn13: string): Promise<BookResponse> => {
-  const { data } = await client.get(`${bookEndPoint}/${isbn13}`)
-  return data as BookResponse
+export const requestBook = async (isbn13: string): Promise<BooksState> => {
+  const { data } = await client.get<BooksState>(`${bookEndPoint}/${isbn13}`)
+  return data as BooksState
 }

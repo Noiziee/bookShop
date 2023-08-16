@@ -1,11 +1,12 @@
-import { createBrowserRouter, Navigate } from "react-router-dom"
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 
-import { Layout } from "./components/Layout"
-import { Books } from "./pages/Books"
-// import { Bookmarks } from "./pages/Bookmarks"
-// import { UserPage } from "./pages/UserPage"
-// import { SignIn } from "./pages/SignIn"
-// import { SignUp } from "./pages/SignUp"
+import { Layout } from './components/Layout'
+import { Books } from './pages/Books'
+import { SignIn } from './pages/SignIn'
+import { SignUp } from './pages/SignUp'
+// import { Bookmarks } from './pages/Bookmarks'
+// import { UserPage } from './pages/UserPage'
+
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,14 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Books />
+      },
+      {
+        path: '/sign-in',
+        element: <SignIn />
+      },
+      {
+        path: '/sign-up',
+        element: <SignUp />
       },
       // {
       //   path: '/bookmarks',
@@ -25,7 +34,7 @@ export const router = createBrowserRouter([
       //   children: [
       //     {
       //       path: '/user-page/',
-      //       element: <Navigate to="sign-in" replace={true} />
+      //       element: <Navigate to='sign-in' replace={true} />
       //     },
       //     {
       //       path: '/user-page/sign-in',

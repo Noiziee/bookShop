@@ -1,0 +1,17 @@
+.container-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-form {
+  display: flex;
+  justify-content: center;
+}
+
+.container-form__content {
+  margin-top: 5rem;
+  width: 40%;
+  border: 1px solid #E7E7E7;
+  padding: 2rem;
+}

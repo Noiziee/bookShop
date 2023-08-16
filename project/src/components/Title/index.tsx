@@ -2,8 +2,8 @@ import { ReactNode } from 'react'
 interface TitleProps {
   children: ReactNode
 }
-export function Title (props: TitleProps): JSX.Element {
+export function Title(props: TitleProps): JSX.Element {
   return (
-    <h1>{props.children}</h1>
+    <h1 className="title">{props.children}</h1>
   )
 }

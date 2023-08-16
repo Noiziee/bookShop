@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
-import './Container.css'
 
 type ContainerProps = {
+  className: string
   children: ReactNode
 }
 
-export function Container({ children }: ContainerProps): JSX.Element {
+export function Container({ className, children }: ContainerProps): JSX.Element {
   return (
-    <div className="container">
+    <div className={className}>
       {children}
     </div>
   )
