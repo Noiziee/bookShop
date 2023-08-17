@@ -1,34 +1,34 @@
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { useEffect, useState } from 'react'
-import { fetchBook } from '../../redux/bookSlice'
+import { useEffect } from 'react'
 import { fetchNewBooks } from '../../redux/newBooksSlice'
 
 import { Container } from '../../components/Container'
 import { Title } from '../../components/Title'
 import { Book } from '../../components/Book'
+import { Loading } from '../../components/Loading'
 
 export function Books() {
   const dispatch = useAppDispatch()
-  const { bookWithDetails, loadingDetails, errorDetails } = useAppSelector(state => state.book)
   const { newBooks, loading, error } = useAppSelector(state => state.newBooks)
-  console.log(bookWithDetails)
   useEffect(() => {
-    dispatch(fetchBook('9781617294136'))
+    dispatch(fetchNewBooks())
   }, [dispatch])
 
+  if(loading) {
+    return <Loading/>
+  }
+  if(error) {
+    return <div>Error</div>
+  }
   function renderBooks() {
-    if (bookWithDetails) {
-      return (
-        <Container className="container-flex">
-          <Book book={bookWithDetails} />
-        </Container>
-      )
-    }
+    return newBooks.map((book) => <Book key={book.isbn13} data={book} />)
   }
   return (
     <div>
       <Title>New Releases Books</Title>
-      {renderBooks()}
+      <Container className="container-flex">
+          {newBooks.length && renderBooks()}
+      </Container>
     </div>
   );
 }

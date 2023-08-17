@@ -1,5 +1,5 @@
 type BookProps = {
-  book: {
+  data: {
     error: string
     title: string
     subtitle: string
@@ -19,13 +19,13 @@ type BookProps = {
 
 }
 
-export function Book({ book }: BookProps): JSX.Element {
+export function Book({ data }: BookProps): JSX.Element {
   return (
     <div className="book" style={{ width: "18rem" }}>
-      <img className="book__img-top" src={book.image} alt="" />
-      <h3 className="book__title">{book.title}</h3>
+      <img className="book__img-top" src={data.image} alt="" />
+      <h3 className="book__title">{data.title}</h3>
       <div className="book__info">
-        <span className="book__author">{`by ${book.authors}, ${book.publisher} ${book.year}`}</span>
+        <span className="book__author">{`by ${data.authors}, ${data.publisher} ${data.year}`}</span>
       </div>
     </div>
   )

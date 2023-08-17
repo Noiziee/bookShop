@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
-import { requestNewBooks, Book } from "../services/books"
+import { requestNewBooks, Book, requestBook } from "../services/books"
 
 interface NewBooksState {
   newBooks: Book[]
@@ -9,7 +9,11 @@ interface NewBooksState {
 
 export const fetchNewBooks = createAsyncThunk('newBooks/fetchNewBooks', async () => {
   const { books } = await requestNewBooks()
-  return books as Book[]
+  
+  const listByIsbn13 = books.map((book) => book.isbn13)
+  const bookDetailsPromises = listByIsbn13.map((isbn13) => requestBook(isbn13))
+  const newBooks = await Promise.all(bookDetailsPromises)
+  return newBooks
 })
 
 const newBooksSlice = createSlice({
