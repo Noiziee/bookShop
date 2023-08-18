@@ -1,3 +1,6 @@
+import { Rating } from '../Rating'
+import { Price } from '../Price'
+
 type BookProps = {
   data: {
     error: string
@@ -22,10 +25,14 @@ type BookProps = {
 export function Book({ data }: BookProps): JSX.Element {
   return (
     <div className="book" style={{ width: "18rem" }}>
-      <img className="book__img-top" src={data.image} alt="" />
+      <img className="book__img" src={data.image} alt="" />
       <h3 className="book__title">{data.title}</h3>
       <div className="book__info">
         <span className="book__author">{`by ${data.authors}, ${data.publisher} ${data.year}`}</span>
+      </div>
+      <div className="book__rating">
+        <Rating rating={data.rating} />
+        <Price price={data.price} />
       </div>
     </div>
   )

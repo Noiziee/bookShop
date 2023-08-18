@@ -1,0 +1,13 @@
+.subscribe {
+  margin: 4.5rem 0;
+  background-color: rgb(252, 216, 252);
+  box-shadow: 4px 4px 4px 0px rgba(34, 60, 80, 0.34);
+
+  &__inner {
+    padding: 0 3.5rem 4rem 3.5rem;
+  }
+
+  &__text {
+    color: #a1a0a0;
+  }
+}

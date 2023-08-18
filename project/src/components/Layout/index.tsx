@@ -10,9 +10,9 @@ export function Layout(): ReactElement {
   return (
     <div className="layout">
       <Header />
-        <Main>
-          <Outlet />
-        </Main>
+      <Main>
+        <Outlet />
+      </Main>
       <Footer />
     </div>
   )

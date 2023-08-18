@@ -8,7 +8,6 @@ export function SignUp(): JSX.Element {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault()
-    console.log(userName, email, password, confirmPassword)
     setUserName('')
     setEmail('')
     setPassword('')
