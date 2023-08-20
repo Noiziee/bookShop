@@ -14,7 +14,10 @@ export function Search(): JSX.Element {
   const filteredBooks = allBooks.filter(book => book.title.toLowerCase().includes(searchQuery.toLowerCase()))
 
   useEffect(() => {
-    dispatch(fetchNewBooks(searchQuery))
+    if (searchQuery !== '') {
+      dispatch(fetchNewBooks(searchQuery))
+    }
+
   }, [dispatch, searchQuery])
 
   if (loading) {

@@ -21,7 +21,6 @@ type BookProps = {
       [key: string]: string
     }
   }
-
 }
 
 export function Book({ data }: BookProps): JSX.Element {
