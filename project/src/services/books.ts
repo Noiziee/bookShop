@@ -34,8 +34,12 @@ export type BooksState = {
   pdf: object
 }
 
-export const requestNewBooks = async (): Promise<Books> => {
-  const { data } = await client.get(newBooksEndPoint);
+export const requestNewBooks = async (searchQuery: string): Promise<Books> => {
+  const { data } = await client.get(newBooksEndPoint, {
+    params: {
+      searchQuery: searchQuery
+    }
+  })
   return data as Books
 }
 
