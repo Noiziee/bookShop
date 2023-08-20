@@ -14,10 +14,10 @@ export function Books() {
     dispatch(fetchNewBooks())
   }, [dispatch])
 
-  if(loading) {
-    return <Loading/>
+  if (loading) {
+    return <Loading />
   }
-  if(error) {
+  if (error) {
     return <div>Error</div>
   }
   function renderBooks() {
@@ -27,7 +27,7 @@ export function Books() {
     <div>
       <Title>New Releases Books</Title>
       <Container className="container-flex">
-          {newBooks.length && renderBooks()}
+        {newBooks.length && renderBooks()}
       </Container>
     </div>
   );

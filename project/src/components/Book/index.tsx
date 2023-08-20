@@ -17,7 +17,9 @@ type BookProps = {
     price: string
     image: string
     url: string
-    pdf: object
+    pdf: {
+      [key: string]: string
+    }
   }
 
 }
