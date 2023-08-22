@@ -2,7 +2,7 @@ import { Rating } from '../Rating'
 import { Price } from '../Price'
 import { NavLink } from 'react-router-dom'
 
-type BookProps = {
+export type BookProps = {
   data: {
     error: string
     title: string
