@@ -27,7 +27,7 @@ export function Search(): JSX.Element {
     <div>
       <Title>‘{searchQuery}’ SEARCH RESULTS</Title>
       <p>Found {filteredBooks.length} books</p>
-      <Container className="container-flex">
+      <Container className="container-content">
         {filteredBooks.map((book) => <Book key={book.isbn13} data={book} />)}
       </Container>
     </div>

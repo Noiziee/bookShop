@@ -16,8 +16,8 @@ export function Header() {
         </a>
         <SearchForm />
         <div className="header__images">
-          <img className="header__icon" src={favorite} alt="favorite" />
-          <img className="header__icon" src={basket} alt="basket" />
+          <NavLink to="./my-favorites"><img className="header__icon" src={favorite} alt="favorite" /></NavLink>
+          <NavLink to="./cart"><img className="header__icon" src={basket} alt="basket" /></NavLink>
           <NavLink to="./user"><img className="header__icon" src={user} alt="user" /></NavLink>
         </div>
       </div>

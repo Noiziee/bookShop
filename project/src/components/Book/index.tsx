@@ -1,5 +1,6 @@
 import { Rating } from '../Rating'
 import { Price } from '../Price'
+import { NavLink } from 'react-router-dom'
 
 type BookProps = {
   data: {
@@ -27,7 +28,9 @@ export function Book({ data }: BookProps): JSX.Element {
   return (
     <div className="book" style={{ width: "18rem" }}>
       <img className="book__img" src={data.image} alt="" />
-      <h3 className="book__title">{data.title}</h3>
+      <NavLink to='./single-book'>
+        <h3 className="book__title">{data.title}</h3>
+      </NavLink>
       <div className="book__info">
         <span className="book__author">{`by ${data.authors}, ${data.publisher} ${data.year}`}</span>
       </div>

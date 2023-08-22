@@ -7,6 +7,9 @@ import { SignUp } from './pages/SignUp'
 import { User } from './pages/User'
 import { AuthSwitcher } from './pages/AuthSwitcher'
 import { Search } from './pages/Search'
+import { SingleBook } from './pages/SingleBook'
+import { MyFavorites } from './pages/MyFavorites'
+import { Cart } from './pages/Cart'
 
 
 
@@ -57,6 +60,18 @@ export const router = createBrowserRouter([
       {
         path: '/search/:query',
         element: <Search />,
+      },
+      {
+        path: '/single-book',
+        element: <SingleBook/>
+      },
+      {
+        path: '/my-favorites',
+        element: <MyFavorites />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
       },
     ],
   },

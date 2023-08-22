@@ -9,9 +9,7 @@
   justify-content: center;
 }
 
-.container-form__content {
-  margin-top: 5rem;
-  width: 40%;
-  border: 1px solid #E7E7E7;
-  padding: 2rem;
+.container-content {
+  display: flex;
+  gap: 3rem;
 }
