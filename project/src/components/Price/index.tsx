@@ -1,9 +1,4 @@
-import { ReactNode } from 'react'
-
-interface PriceProps {
-  children?: ReactNode
-  price: string
-}
+import { PriceProps } from '../../types/type'
 
 export function Price({ price }: PriceProps): JSX.Element {
   return (

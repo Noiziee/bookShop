@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
+import { Button } from '../../components/Button'
 
 export function SignIn(): JSX.Element {
   const [email, setEmail] = useState<string>('')
@@ -41,7 +42,7 @@ export function SignIn(): JSX.Element {
             onChange={handlePasswordChange}
             value={password} />
         </div>
-        <button type="submit" className="btn btn-dark w-100">Sign In</button>
+        <Button type="submit">Sign In</Button>
       </form>
     </div>
   )

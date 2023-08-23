@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../hook'
 import { useEffect } from 'react'
-import { fetchNewBooks } from '../../redux/newBooksSlice'
 
+import { fetchNewBooks } from '../../redux/newBooksSlice'
 import { Title } from '../../components/Title'
 import { Book } from '../../components/Book'
-import { Container } from '../../components/Container'
 import { Loading } from '../../components/Loading'
+
 export function Search(): JSX.Element {
   const allBooks = useAppSelector(state => state.newBooks.newBooks)
   const loading = useAppSelector(state => state.newBooks.loading)
@@ -24,12 +24,12 @@ export function Search(): JSX.Element {
     return <Loading />
   }
   return (
-    <div>
+    <>
       <Title>‘{searchQuery}’ SEARCH RESULTS</Title>
       <p>Found {filteredBooks.length} books</p>
-      <Container className="container-content">
+      <div className="search">
         {filteredBooks.map((book) => <Book key={book.isbn13} data={book} />)}
-      </Container>
-    </div>
+      </div>
+    </>
   )
 }

@@ -1,4 +1,4 @@
-export function Footer() {
+export function Footer(): JSX.Element {
   return (
     <footer className="footer">
       <div className="footer__inner">

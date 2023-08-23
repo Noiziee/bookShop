@@ -10,6 +10,7 @@ import { Search } from './pages/Search'
 import { SingleBook } from './pages/SingleBook'
 import { MyFavorites } from './pages/MyFavorites'
 import { Cart } from './pages/Cart'
+import { BookInfo } from './components/BookInfo'
 
 
 
@@ -63,7 +64,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/single-book',
-        element: <SingleBook/>
+        element: <SingleBook />
       },
       {
         path: '/my-favorites',
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
         path: '/cart',
         element: <Cart />
       },
+      {
+        path: '/book-info',
+        element: <BookInfo />
+      }
     ],
   },
 ]);

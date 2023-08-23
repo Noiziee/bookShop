@@ -1,9 +1,6 @@
+import { RatingProps } from '../../types/type'
 import star from '../../images/star.svg'
 import mutedStar from '../../images/mutedStar.svg'
-
-interface RatingProps {
-  rating: string
-}
 
 export function Rating({ rating }: RatingProps): JSX.Element {
   const parsedRating = parseInt(rating, 10)
@@ -21,6 +18,5 @@ export function Rating({ rating }: RatingProps): JSX.Element {
       alt={index >= parsedRating ? 'Muted Star' : 'Active Star'}
     />
   ))
-
   return <div>{stars}</div>
 }

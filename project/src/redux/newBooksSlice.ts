@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { requestNewBooks, Book, requestBook } from '../services/books'
+import { requestNewBooks, requestBook } from '../services/books'
+import { Book } from '../types/type'
 
 interface NewBooksState {
   newBooks: Book[]

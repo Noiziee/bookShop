@@ -1,8 +1,5 @@
-import { ReactNode } from 'react'
+import { MainProps } from '../../types/type'
 
-interface MainProps {
-  children: ReactNode
-}
 export function Main(props: MainProps): JSX.Element {
   return (
     <main className="main">
