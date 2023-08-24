@@ -19,13 +19,12 @@ export function SearchForm(): JSX.Element {
     setQuery('')
   }
   return (
-    <div className="search input-group w-50 ">
-      <form className="w-75" onSubmit={handleSubmit}>
+    <div className="search input-group w-50">
+      <form className="w-75 d-flex" onSubmit={handleSubmit}>
         <input type="text" value={query} onChange={handleSearch} className="form-control" placeholder="Search" />
+        <img className="search__icon" src={search} alt="search" />
       </form>
-      <div className="input-group-text">
-        <img src={search} alt="search" />
-      </div>
+
     </div>
   )
 }

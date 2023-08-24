@@ -5,7 +5,7 @@ import { bookReducer } from './bookSlice'
 export const store = configureStore({
   reducer: {
     newBooks: newBooksReducer,
-    book: bookReducer,
+    bookDetails: bookReducer,
   }
 })
 

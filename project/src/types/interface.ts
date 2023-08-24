@@ -1,4 +1,4 @@
-export interface BookState {
+export interface BooksState {
   error: string
   title: string
   subtitle: string
@@ -14,4 +14,5 @@ export interface BookState {
   image: string
   url: string
   pdf: object
+  language: string
 }

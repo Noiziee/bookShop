@@ -1,6 +1,7 @@
-import { Title } from "../../components/Title"
+import { BooksState } from '../../types/interface'
+import { Title } from '../../components/Title'
 
-export function Cart (): JSX.Element {
+export function Cart({ cartItems }: { cartItems: BooksState[] }): JSX.Element {
   return (
     <div>
       <Title>Cart</Title>

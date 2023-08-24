@@ -1,0 +1,56 @@
+.book-info {
+  &__inner {
+    display: flex;
+    padding-top: 0.5rem;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__col {
+    flex: 1 1 50%;
+  }
+
+  &__col_border {
+    padding-top: 2.5rem;
+    border-top: 1px solid #e7e7e7;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  &__price {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #A8A8A8;
+  }
+
+  &__preview {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  &__preview-link {
+    color: #000;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: #c81717;
+    }
+  }
+}

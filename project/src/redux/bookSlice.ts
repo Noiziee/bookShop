@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { requestBook } from '../services/books';
-import { BooksState } from '../types/interface';
+import { requestBook } from '../services/books'
+import { BooksState } from '../types/interface'
 
 interface BookState {
   bookDetails: BooksState
@@ -8,9 +8,9 @@ interface BookState {
   errorDetails: boolean
 }
 
-export const fetchBook = createAsyncThunk('bookDetails/fetchBook', async (isbn13: string) => {
+export const fetchBook = createAsyncThunk<BooksState, string>('bookDetails/fetchBook', async (isbn13: string) => {
   const bookDetails = await requestBook(isbn13)
-  return bookDetails as BooksState
+  return bookDetails
 })
 
 const bookSlice = createSlice({

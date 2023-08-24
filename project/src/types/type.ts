@@ -25,6 +25,7 @@ export type BookProps = {
 export type ButtonProps = {
   children: ReactNode
   type: 'button' | 'submit' | 'reset' | undefined
+  onClick: () => void
 }
 
 export type ContainerProps = {
