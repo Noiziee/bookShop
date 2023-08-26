@@ -3,10 +3,9 @@ import { Title } from '../Title'
 import { Rating } from '../Rating'
 import { Button } from '../Button'
 import { NavBookInfo } from '../NavBookInfo'
-
-
-
+import favorites from '../../images/favorites.svg'
 export function BookInfo({ data }: { data: BooksState }): JSX.Element {
+
   return (
     <div className="book-info">
       <Title>{data.title}</Title>
@@ -14,6 +13,7 @@ export function BookInfo({ data }: { data: BooksState }): JSX.Element {
         <div className="book-info__col">
           <div className="book-info__image">
             <img className="book-info__img" src={data.image} alt="Book" />
+            <img className="book-info__favorites" src={favorites} alt="favorite" />
           </div>
         </div>
         <div className="book-info__col book-info__col_border">

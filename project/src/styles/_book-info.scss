@@ -2,12 +2,25 @@
   &__inner {
     display: flex;
     padding-top: 0.5rem;
+    gap: 5rem;
   }
 
   &__image {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ff96ed48;
+    position: relative;
+  }
+
+  &__favorites {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: #212020;
+    padding: 1rem;
   }
 
   &__col {

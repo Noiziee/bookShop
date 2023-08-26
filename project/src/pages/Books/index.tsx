@@ -11,7 +11,7 @@ export function Books() {
   const dispatch = useAppDispatch()
   const { newBooks, loading, error } = useAppSelector(state => state.newBooks)
   useEffect(() => {
-    dispatch(fetchNewBooks(''))
+    dispatch(fetchNewBooks())
   }, [dispatch])
 
   if (loading) {
