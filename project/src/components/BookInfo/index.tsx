@@ -1,17 +1,12 @@
-import { useState } from 'react'
 import { BooksState } from '../../types/interface'
 import { Title } from '../Title'
 import { Rating } from '../Rating'
 import { Button } from '../Button'
+import { NavBookInfo } from '../NavBookInfo'
 
 
 
 export function BookInfo({ data }: { data: BooksState }): JSX.Element {
-  const [cartItems, setCartItems] = useState<BooksState[]>([])
-
-  function addToCart() {
-    setCartItems([...cartItems, data])
-  }
   return (
     <div className="book-info">
       <Title>{data.title}</Title>
@@ -42,12 +37,13 @@ export function BookInfo({ data }: { data: BooksState }): JSX.Element {
             <span className="book-info__format">Format</span>
             <span>Paper book / ebook (PDF)</span>
           </div>
-          <Button type="button" onClick={addToCart}>Add to cart</Button>
+          <Button type="button">Add to cart</Button>
           <div className="book-info__preview">
             <a className="book-info__preview-link" href="#">Preview book</a>
           </div>
         </div>
       </div>
+      <NavBookInfo data={data} />
     </div>
   )
 }

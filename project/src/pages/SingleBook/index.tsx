@@ -1,12 +1,15 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hook'
 import { useParams } from 'react-router-dom'
+
 import { fetchBook } from '../../redux/bookSlice'
 
 import { BackHome } from '../../components/BackHome'
 import { Loading } from '../../components/Loading'
 import { BookInfo } from '../../components/BookInfo'
 import { Book } from '../../components/Book'
+import { Subscribe } from '../../components/Subscribe'
+import { Title } from '../../components/Title'
 export function SingleBook(): JSX.Element {
   const dispatch = useAppDispatch()
   const isbn13 = useParams()
@@ -26,8 +29,8 @@ export function SingleBook(): JSX.Element {
     return <div>Error</div>
   }
 
-  function renderSimulatedBooks() {
-    const thresHoldRating: string = '3'
+  function renderSimilartedBooks() {
+    const thresHoldRating: string = '4'
     const recommendedBooks = newBooks.filter((book) => book.rating > thresHoldRating)
     if (recommendedBooks.length === 3) {
       return recommendedBooks.map((book) => <Book key={book.isbn13} data={book} />)
@@ -38,14 +41,10 @@ export function SingleBook(): JSX.Element {
     <div className="book">
       <BackHome />
       <BookInfo data={bookDetails} />
-
-
-      {/* контент */}
-
-
-
-      <div className="book__simulated">
-        {renderSimulatedBooks()}
+      <Subscribe />
+      <Title>Similar Books</Title>
+      <div className="book__similated">
+        {renderSimilartedBooks()}
       </div>
     </div>
   )

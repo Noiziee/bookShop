@@ -4,10 +4,10 @@ import { Books } from '../types/type'
 import { BooksState } from '../types/interface'
 
 
-export const requestNewBooks = async (searchQuery: string): Promise<Books> => {
+export const requestNewBooks = async (searchQuery?: string): Promise<Books> => {
   const { data } = await client.get(newBooksEndPoint, {
     params: {
-      searchQuery: searchQuery
+      searchQuery: searchQuery || undefined
     }
   })
   return data as Books

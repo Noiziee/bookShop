@@ -1,4 +1,4 @@
-import { ButtonProps } from "../../types/type"
+import { ButtonProps } from '../../types/type'
 
 export function Button({ children, type }: ButtonProps): JSX.Element {
   return (
