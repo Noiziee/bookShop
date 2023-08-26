@@ -1,11 +1,19 @@
-import { BooksState } from '../../types/interface'
+
+import { useAppDispatch } from '../../hook'
+import { setFavorites } from '../../redux/favoriteSlice'
+
+import { BooksFavorite } from '../../types/interface'
 import { Title } from '../Title'
 import { Rating } from '../Rating'
 import { Button } from '../Button'
 import { NavBookInfo } from '../NavBookInfo'
 import favorites from '../../images/favorites.svg'
-export function BookInfo({ data }: { data: BooksState }): JSX.Element {
-
+export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
+  const dispatch = useAppDispatch()
+  function handleAddFavorite() {
+    dispatch(setFavorites(data))
+    localStorage.setItem('favoritesBooks', JSON.stringify([data]))
+  }
   return (
     <div className="book-info">
       <Title>{data.title}</Title>
@@ -13,7 +21,8 @@ export function BookInfo({ data }: { data: BooksState }): JSX.Element {
         <div className="book-info__col">
           <div className="book-info__image">
             <img className="book-info__img" src={data.image} alt="Book" />
-            <img className="book-info__favorites" src={favorites} alt="favorite" />
+            <img className="book-info__favorites" src={favorites} alt="favorite"
+              onClick={handleAddFavorite} />
           </div>
         </div>
         <div className="book-info__col book-info__col_border">

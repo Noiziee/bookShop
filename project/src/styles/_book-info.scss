@@ -21,6 +21,15 @@
     transition: all 0.2s ease-in-out;
     background-color: #212020;
     padding: 1rem;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #afa3a3;
+    }
+
+    &:active {
+      background-color: #f38888;
+    }
   }
 
   &__col {

@@ -16,3 +16,11 @@ export interface BooksState {
   pdf: object
   language: string
 }
+
+export interface BooksFavorite extends BooksState {
+  favorite: boolean
+}
+
+export interface FavoriteState {
+  favoritesBooks: BooksFavorite[]
+}
