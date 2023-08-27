@@ -23,4 +23,5 @@ export interface BooksFavorite extends BooksState {
 
 export interface FavoriteState {
   favoritesBooks: BooksFavorite[]
+  favoritesCount: number
 }

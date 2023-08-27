@@ -34,11 +34,11 @@ export function Header() {
         </NavLink>
         <SearchForm />
         <div className="header__images">
-          <NavLink to="./my-favorites"><img className="header__icon" src={favorite} alt="favorite" />
+          <NavLink className="header__link" to="./my-favorites"><img className="header__icon" src={favorite} alt="favorite" />
             <span className="header__counter">{favoritesCount}</span>
           </NavLink>
-          <NavLink to="./cart"><img className="header__icon" src={basket} alt="basket" /></NavLink>
-          <NavLink to="./user"><img className="header__icon" src={user} alt="user" /></NavLink>
+          <NavLink className="header__link" to="./cart"><img className="header__icon" src={basket} alt="basket" /></NavLink>
+          <NavLink className="header__link" to="./user"><img className="header__icon" src={user} alt="user" /></NavLink>
         </div>
       </div>
     </header>

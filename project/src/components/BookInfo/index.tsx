@@ -1,19 +1,37 @@
-
-import { useAppDispatch } from '../../hook'
-import { setFavorites } from '../../redux/favoriteSlice'
-
+import { useAppDispatch, useAppSelector } from '../../hook'
+import { setFavorites, incrementFavoritesCount } from '../../redux/favoriteSlice'
+import { addToCart, setCartItems } from '../../redux/cartSlice'
 import { BooksFavorite } from '../../types/interface'
 import { Title } from '../Title'
 import { Rating } from '../Rating'
-import { Button } from '../Button'
+// import { Button } from '../Button'
 import { NavBookInfo } from '../NavBookInfo'
 import favorites from '../../images/favorites.svg'
 export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
   const dispatch = useAppDispatch()
-  function handleAddFavorite() {
-    dispatch(setFavorites(data))
-    localStorage.setItem('favoritesBooks', JSON.stringify([data]))
+  const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
+  const cartItems = useAppSelector(state => state.cart.cartItems)
+
+  function handleAddToCart() {
+    const isBookAlreadyAdded = cartItems.some(item => item.isbn13 === data.isbn13)
+
+    if (!isBookAlreadyAdded) {
+      const updatedCartItems = [...cartItems, data]
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
+      localStorage.setItem('cartItemCount', String(updatedCartItems.length))
+      dispatch(setCartItems(updatedCartItems))
+      dispatch(addToCart(data))
+    } else {
+      alert('Book already added to cart')
+    }
   }
+  function handleAddFavorite() {
+    dispatch(setFavorites([data]))
+    localStorage.setItem('favoritesBooks', JSON.stringify([data]))
+    dispatch(incrementFavoritesCount())
+    localStorage.setItem('favoritesCount', (favoritesCount + 1).toString())
+  }
+
   return (
     <div className="book-info">
       <Title>{data.title}</Title>
@@ -46,7 +64,7 @@ export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
             <span className="book-info__format">Format</span>
             <span>Paper book / ebook (PDF)</span>
           </div>
-          <Button type="button">Add to cart</Button>
+          <button type="button" onClick={handleAddToCart}>Add to cart</button>
           <div className="book-info__preview">
             <a className="book-info__preview-link" href="#">Preview book</a>
           </div>
