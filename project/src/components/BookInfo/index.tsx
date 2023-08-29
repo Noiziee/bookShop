@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react'
+
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { setFavorites, incrementFavoritesCount } from '../../redux/favoriteSlice'
+import { setFavorites, incrementFavoritesCount, setFavoritesCount, decrementFavoritesCount } from '../../redux/favoriteSlice'
 import { addToCart, setCartItems } from '../../redux/cartSlice'
 import { BooksFavorite } from '../../types/interface'
 import { Title } from '../Title'
@@ -9,6 +11,7 @@ import { NavBookInfo } from '../NavBookInfo'
 import favorites from '../../images/favorites.svg'
 export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
   const dispatch = useAppDispatch()
+  const [isFavorite, setIsFavorite] = useState(false)
   const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
   const cartItems = useAppSelector(state => state.cart.cartItems)
 
@@ -25,12 +28,32 @@ export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
       alert('Book already added to cart')
     }
   }
+
   function handleAddFavorite() {
     dispatch(setFavorites([data]))
     localStorage.setItem('favoritesBooks', JSON.stringify([data]))
     dispatch(incrementFavoritesCount())
     localStorage.setItem('favoritesCount', (favoritesCount + 1).toString())
+
+    // ----------------------------------------------------------------
+    const updatedFavorites = isFavorite ? [] : [data]
+    const newFavoritesCount = isFavorite ? favoritesCount - 1 : favoritesCount + 1
+    dispatch(setFavorites(updatedFavorites))
+    localStorage.setItem('favoritesBooks', JSON.stringify(updatedFavorites))
+
+    dispatch(setFavoritesCount(newFavoritesCount))
+    localStorage.setItem('favoritesCount', String(newFavoritesCount))
+
+    setIsFavorite(!isFavorite)
+    localStorage.setItem('isFavorite', String(!isFavorite))
   }
+
+  useEffect(() => {
+    const storedIsFavorite = localStorage.getItem('isFavorite')
+    if (storedIsFavorite) {
+      setIsFavorite(JSON.parse(storedIsFavorite))
+    }
+  }, [])
 
   return (
     <div className="book-info">
@@ -39,7 +62,9 @@ export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
         <div className="book-info__col">
           <div className="book-info__image">
             <img className="book-info__img" src={data.image} alt="Book" />
-            <img className="book-info__favorites" src={favorites} alt="favorite"
+            <img className={`book-info__favorites ${isFavorite ? 'favorite' : ''}`}
+              src={favorites}
+              alt="favorite"
               onClick={handleAddFavorite} />
           </div>
         </div>

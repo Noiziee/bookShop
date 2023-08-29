@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
-import { BooksFavorite } from '../../types/interface'
 import { useAppDispatch, useAppSelector } from '../../hook'
 import { removeFromCart, setCartItems, setCartItemCount } from '../../redux/cartSlice'
 import { Title } from '../../components/Title'
 import { Book } from '../../components/Book'
+import { BackHome } from '../../components/BackHome'
 
 export function Cart(): JSX.Element {
   const dispatch = useAppDispatch()
@@ -12,7 +12,6 @@ export function Cart(): JSX.Element {
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem('cartItems') || '[]')
     const storedCartItemCount = Number(localStorage.getItem('cartItemCount') || '0')
-
     dispatch(setCartItems(storedCartItems))
     dispatch(setCartItemCount(storedCartItemCount))
   }, [])
@@ -25,6 +24,7 @@ export function Cart(): JSX.Element {
   // }
   return (
     <div>
+      <BackHome />
       <Title>Cart</Title>
       {cartItems.map((item, index) => (
         <Book key={index} data={item} />

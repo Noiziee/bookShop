@@ -3,7 +3,7 @@ import { BooksFavorite } from '../types/interface'
 
 interface CartState {
   cartItems: BooksFavorite[]
-  cartItemCount: number;
+  cartItemCount: number
 }
 
 const initialState: CartState = {
@@ -16,11 +16,11 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     setCartItems: (state, action: PayloadAction<BooksFavorite[]>) => {
-      state.cartItems = action.payload;
-      state.cartItemCount = action.payload.length;
+      state.cartItems = action.payload
+      state.cartItemCount = action.payload.length
     },
     setCartItemCount: (state, action: PayloadAction<number>) => {
-      state.cartItemCount = action.payload;
+      state.cartItemCount = action.payload
     },
     addToCart: (state, action: PayloadAction<BooksFavorite>) => {
       state.cartItems.push(action.payload)

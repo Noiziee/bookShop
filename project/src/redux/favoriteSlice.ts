@@ -31,8 +31,11 @@ const favoriteSlice = createSlice({
       state.favoritesCount -= 1;
       localStorage.setItem('favoritesCount', state.favoritesCount.toString())
     },
+    setFavoritesCount: (state, action: PayloadAction<number>) => {
+      state.favoritesCount = action.payload;
+    },
   }
 })
 
-export const { setFavorites, incrementFavoritesCount, decrementFavoritesCount } = favoriteSlice.actions
+export const { setFavorites, incrementFavoritesCount, decrementFavoritesCount, setFavoritesCount } = favoriteSlice.actions
 export const favoriteReducer = favoriteSlice.reducer

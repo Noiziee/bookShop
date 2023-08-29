@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hook'
 import { setFavorites } from '../../redux/favoriteSlice'
+import { setCartItems } from '../../redux/cartSlice'
 
 import logo from '../../images/logo.svg'
 import favorite from '../../images/favorite.svg'
@@ -13,7 +14,7 @@ import { SearchForm } from '../SearchForm'
 export function Header() {
   const dispatch = useAppDispatch()
   const { favoritesBooks } = useAppSelector(state => state.favorite)
-  const [favoritesCount, setFavoritesCount] = useState(favoritesBooks.length)
+  const cartItemCount = useAppSelector(state => state.cart.cartItemCount)
 
   useEffect(() => {
     const favoritesData = localStorage.getItem('favoritesBooks')
@@ -23,8 +24,11 @@ export function Header() {
   }, [dispatch])
 
   useEffect(() => {
-    setFavoritesCount(favoritesBooks.length)
-  }, [favoritesBooks])
+    const cartData = localStorage.getItem('cartItems')
+    if (cartData && cartData !== '[]') {
+      dispatch(setCartItems(JSON.parse(cartData)))
+    }
+  }, [dispatch])
 
   return (
     <header className="header">
@@ -35,9 +39,11 @@ export function Header() {
         <SearchForm />
         <div className="header__images">
           <NavLink className="header__link" to="./my-favorites"><img className="header__icon" src={favorite} alt="favorite" />
-            <span className="header__counter">{favoritesCount}</span>
+            <span className="header__counter">{favoritesBooks.length}</span>
           </NavLink>
-          <NavLink className="header__link" to="./cart"><img className="header__icon" src={basket} alt="basket" /></NavLink>
+          <NavLink className="header__link" to="./cart"><img className="header__icon" src={basket} alt="cart" />
+            <span className="header__counter">{cartItemCount}</span>
+          </NavLink>
           <NavLink className="header__link" to="./user"><img className="header__icon" src={user} alt="user" /></NavLink>
         </div>
       </div>
