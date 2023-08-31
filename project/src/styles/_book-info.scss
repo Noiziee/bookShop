@@ -28,7 +28,11 @@
     }
   }
 
-  &__favorites.favorite {
+  &__color {
+    padding: 2rem;
+  }
+
+  &__favorites.active {
     background-color: #e488e3;
   }
 

@@ -1,25 +1,25 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { setFavorites } from '../../redux/favoriteSlice'
+import { setFavoritesCount } from '../../redux/favoriteSlice'
 import { setCartItems } from '../../redux/cartSlice'
+import { SearchForm } from '../SearchForm'
 
 import logo from '../../images/logo.svg'
 import favorite from '../../images/favorite.svg'
 import basket from '../../images/basket.svg'
 import user from '../../images/user.svg'
 
-import { SearchForm } from '../SearchForm'
 
 export function Header() {
   const dispatch = useAppDispatch()
-  const { favoritesBooks } = useAppSelector(state => state.favorite)
+  const { favoritesCount } = useAppSelector(state => state.favorite)
   const cartItemCount = useAppSelector(state => state.cart.cartItemCount)
 
   useEffect(() => {
-    const favoritesData = localStorage.getItem('favoritesBooks')
-    if (favoritesData && favoritesData !== '[]') {
-      dispatch(setFavorites(JSON.parse(favoritesData)))
+    const favoritesCountData = localStorage.getItem('favoritesCount')
+    if (favoritesCountData) {
+      dispatch(setFavoritesCount(parseInt(favoritesCountData, 10)));
     }
   }, [dispatch])
 
@@ -39,7 +39,7 @@ export function Header() {
         <SearchForm />
         <div className="header__images">
           <NavLink className="header__link" to="./my-favorites"><img className="header__icon" src={favorite} alt="favorite" />
-            <span className="header__counter">{favoritesBooks.length}</span>
+            <span className="header__counter">{favoritesCount}</span>
           </NavLink>
           <NavLink className="header__link" to="./cart"><img className="header__icon" src={basket} alt="cart" />
             <span className="header__counter">{cartItemCount}</span>

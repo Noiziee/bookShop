@@ -23,19 +23,11 @@ const favoriteSlice = createSlice({
       })
       localStorage.setItem('favoritesBooks', JSON.stringify(state.favoritesBooks))
     },
-    incrementFavoritesCount: (state) => {
-      state.favoritesCount += 1;
-      localStorage.setItem('favoritesCount', state.favoritesCount.toString())
-    },
-    decrementFavoritesCount: (state) => {
-      state.favoritesCount -= 1;
-      localStorage.setItem('favoritesCount', state.favoritesCount.toString())
-    },
     setFavoritesCount: (state, action: PayloadAction<number>) => {
-      state.favoritesCount = action.payload;
+      state.favoritesCount = action.payload
     },
   }
 })
 
-export const { setFavorites, incrementFavoritesCount, decrementFavoritesCount, setFavoritesCount } = favoriteSlice.actions
+export const { setFavorites, setFavoritesCount } = favoriteSlice.actions
 export const favoriteReducer = favoriteSlice.reducer

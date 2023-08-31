@@ -1,51 +1,26 @@
 import { useState, useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { setFavorites, incrementFavoritesCount, setFavoritesCount, decrementFavoritesCount } from '../../redux/favoriteSlice'
-import { addToCart, setCartItems } from '../../redux/cartSlice'
 import { BooksFavorite } from '../../types/interface'
 import { Title } from '../Title'
 import { Rating } from '../Rating'
-// import { Button } from '../Button'
+import { Button } from '../Button'
 import { NavBookInfo } from '../NavBookInfo'
 import favorites from '../../images/favorites.svg'
+
+import { toggleFavorite } from '../../helpers'
+import { handleAddToCart } from '../../helpers'
 export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
   const dispatch = useAppDispatch()
   const [isFavorite, setIsFavorite] = useState(false)
   const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
   const cartItems = useAppSelector(state => state.cart.cartItems)
 
-  function handleAddToCart() {
-    const isBookAlreadyAdded = cartItems.some(item => item.isbn13 === data.isbn13)
-
-    if (!isBookAlreadyAdded) {
-      const updatedCartItems = [...cartItems, data]
-      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
-      localStorage.setItem('cartItemCount', String(updatedCartItems.length))
-      dispatch(setCartItems(updatedCartItems))
-      dispatch(addToCart(data))
-    } else {
-      alert('Book already added to cart')
-    }
+  function handleAddToCartClick() {
+    handleAddToCart(data, cartItems, dispatch)
   }
-
   function handleAddFavorite() {
-    dispatch(setFavorites([data]))
-    localStorage.setItem('favoritesBooks', JSON.stringify([data]))
-    dispatch(incrementFavoritesCount())
-    localStorage.setItem('favoritesCount', (favoritesCount + 1).toString())
-
-    // ----------------------------------------------------------------
-    const updatedFavorites = isFavorite ? [] : [data]
-    const newFavoritesCount = isFavorite ? favoritesCount - 1 : favoritesCount + 1
-    dispatch(setFavorites(updatedFavorites))
-    localStorage.setItem('favoritesBooks', JSON.stringify(updatedFavorites))
-
-    dispatch(setFavoritesCount(newFavoritesCount))
-    localStorage.setItem('favoritesCount', String(newFavoritesCount))
-
-    setIsFavorite(!isFavorite)
-    localStorage.setItem('isFavorite', String(!isFavorite))
+    toggleFavorite(data, isFavorite, favoritesCount, dispatch, setIsFavorite)
   }
 
   useEffect(() => {
@@ -53,8 +28,7 @@ export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
     if (storedIsFavorite) {
       setIsFavorite(JSON.parse(storedIsFavorite))
     }
-  }, [])
-
+  }, [dispatch])
   return (
     <div className="book-info">
       <Title>{data.title}</Title>
@@ -62,7 +36,7 @@ export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
         <div className="book-info__col">
           <div className="book-info__image">
             <img className="book-info__img" src={data.image} alt="Book" />
-            <img className={`book-info__favorites ${isFavorite ? 'favorite' : ''}`}
+            <img className={`book-info__favorites ${isFavorite ? 'active' : ''}`}
               src={favorites}
               alt="favorite"
               onClick={handleAddFavorite} />
@@ -89,7 +63,7 @@ export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
             <span className="book-info__format">Format</span>
             <span>Paper book / ebook (PDF)</span>
           </div>
-          <button type="button" onClick={handleAddToCart}>Add to cart</button>
+          <Button type="button" onClick={handleAddToCartClick}>Add to cart</Button>
           <div className="book-info__preview">
             <a className="book-info__preview-link" href="#">Preview book</a>
           </div>

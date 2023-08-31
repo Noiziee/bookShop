@@ -3,12 +3,13 @@ import { useAppDispatch, useAppSelector } from '../../hook'
 import { setFavorites } from '../../redux/favoriteSlice'
 
 import { Title } from '../../components/Title'
-import { Book } from '../../components/Book'
 import { BackHome } from '../../components/BackHome'
+import { FavoriteBook } from '../../components/FavoriteBook'
 
 export function MyFavorites(): JSX.Element {
   const dispatch = useAppDispatch()
   const { favoritesBooks } = useAppSelector(state => state.favorite)
+  const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
 
   useEffect(() => {
     const favoritesData = localStorage.getItem('favoritesBooks')
@@ -18,14 +19,16 @@ export function MyFavorites(): JSX.Element {
   }, [dispatch])
 
   function renderFavorites() {
-    return favoritesBooks.map(item => <Book key={item.isbn13} data={item} />)
+    return favoritesBooks.map((book) => (
+      <FavoriteBook key={book.isbn13} data={book} />
+    ))
   }
   return (
     <>
       <BackHome />
       <Title>Favorites</Title>
       <div className="favorites">
-        {favoritesBooks.length > 0 && renderFavorites()}
+        {favoritesCount > 0 && renderFavorites()}
       </div>
     </>
   )
