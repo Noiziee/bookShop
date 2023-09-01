@@ -18,12 +18,14 @@ export function BookInfo({ data }: { data: BooksData }): JSX.Element {
   function handleAddToCartClick() {
     handleAddToCart(data, cartItems, dispatch)
   }
+
   function handleAddFavorite() {
     toggleFavorite(data, isFavorite, favoritesCount, dispatch)
     setIsFavorite(!isFavorite)
   }
+
   useEffect(() => {
-    localStorage.setItem('isFavorite', JSON.stringify(isFavorite));
+    localStorage.setItem('isFavorite', JSON.stringify(isFavorite))
   }, [isFavorite])
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export function BookInfo({ data }: { data: BooksData }): JSX.Element {
     if (storedIsFavorite) {
       setIsFavorite(JSON.parse(storedIsFavorite))
     }
-  }, [dispatch])
+  }, [])
   return (
     <div className="book-info">
       <Title>{data.title}</Title>

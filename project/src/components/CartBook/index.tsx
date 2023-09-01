@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { removeFromCart } from '../../redux/cartSlice'
+import { removeFromCart, setCartItemCount } from '../../redux/cartSlice'
 import { Price } from '../Price'
 import { NavLink } from 'react-router-dom'
-
+import { setCartItems } from '../../redux/cartSlice'
 import { BooksData } from '../../types/interface'
 import cross from '../../images/cross.svg'
 
@@ -16,6 +16,8 @@ export function CartBook({ data }: { data: BooksData }): JSX.Element {
     const updatedCartItems = cartItems.filter(cartItem => cartItem.isbn13 !== item.isbn13)
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
     localStorage.setItem('cartItemCount', String(updatedCartItems.length))
+    dispatch(setCartItems(updatedCartItems))
+    dispatch(setCartItemCount(updatedCartItems.length))
   }
   return (
     <div className="cart-book">

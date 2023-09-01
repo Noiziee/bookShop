@@ -41,7 +41,7 @@ export function handleAddToCart(
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
     localStorage.setItem('cartItemCount', String(updatedCartItems.length))
     dispatch(setCartItems(updatedCartItems))
-    dispatch(addToCart(data))
+    // dispatch(addToCart(data))
   } else {
     alert('Book already added to cart')
   }
