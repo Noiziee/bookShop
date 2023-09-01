@@ -5,16 +5,16 @@ import { Price } from '../Price'
 import { NavLink } from 'react-router-dom'
 import favorites from '../../images/favorites.svg'
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { BooksFavorite } from '../../types/interface'
+import { BooksData } from '../../types/interface'
 import { toggleFavorite } from '../../helpers'
 
-export function FavoriteBook({ data }: { data: BooksFavorite }): JSX.Element {
+export function FavoriteBook({ data }: { data: BooksData }): JSX.Element {
   const [isFavorite, setIsFavorite] = useState(false)
   const dispatch = useAppDispatch()
   const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
-
   function handleAddFavorite() {
-    toggleFavorite(data, isFavorite, favoritesCount, dispatch, setIsFavorite)
+    toggleFavorite(data, isFavorite, favoritesCount, dispatch)
+    setIsFavorite(!isFavorite)
   }
 
   useEffect(() => {

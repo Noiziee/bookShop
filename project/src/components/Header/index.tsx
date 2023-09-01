@@ -19,7 +19,7 @@ export function Header() {
   useEffect(() => {
     const favoritesCountData = localStorage.getItem('favoritesCount')
     if (favoritesCountData) {
-      dispatch(setFavoritesCount(parseInt(favoritesCountData, 10)));
+      dispatch(setFavoritesCount(parseInt(favoritesCountData, 10)))
     }
   }, [dispatch])
 

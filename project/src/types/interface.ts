@@ -17,11 +17,11 @@ export interface BooksState {
   language: string
 }
 
-export interface BooksFavorite extends BooksState {
+export interface BooksData extends BooksState {
   favorite: boolean
 }
 
 export interface FavoriteState {
-  favoritesBooks: BooksFavorite[]
+  favoritesBooks: BooksData[]
   favoritesCount: number
 }

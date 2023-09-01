@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { BooksFavorite } from '../../types/interface'
+import { BooksData } from '../../types/interface'
 import { Title } from '../Title'
 import { Rating } from '../Rating'
 import { Button } from '../Button'
 import { NavBookInfo } from '../NavBookInfo'
 import favorites from '../../images/favorites.svg'
-
 import { toggleFavorite } from '../../helpers'
 import { handleAddToCart } from '../../helpers'
-export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
+export function BookInfo({ data }: { data: BooksData }): JSX.Element {
   const dispatch = useAppDispatch()
   const [isFavorite, setIsFavorite] = useState(false)
   const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
@@ -20,8 +19,12 @@ export function BookInfo({ data }: { data: BooksFavorite }): JSX.Element {
     handleAddToCart(data, cartItems, dispatch)
   }
   function handleAddFavorite() {
-    toggleFavorite(data, isFavorite, favoritesCount, dispatch, setIsFavorite)
+    toggleFavorite(data, isFavorite, favoritesCount, dispatch)
+    setIsFavorite(!isFavorite)
   }
+  useEffect(() => {
+    localStorage.setItem('isFavorite', JSON.stringify(isFavorite));
+  }, [isFavorite])
 
   useEffect(() => {
     const storedIsFavorite = localStorage.getItem('isFavorite')

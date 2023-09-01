@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { BooksFavorite } from '../types/interface'
+import { BooksData } from '../types/interface'
 
 interface CartState {
-  cartItems: BooksFavorite[]
+  cartItems: BooksData[]
   cartItemCount: number
 }
 
@@ -15,17 +15,17 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setCartItems: (state, action: PayloadAction<BooksFavorite[]>) => {
+    setCartItems: (state, action: PayloadAction<BooksData[]>) => {
       state.cartItems = action.payload
       state.cartItemCount = action.payload.length
     },
     setCartItemCount: (state, action: PayloadAction<number>) => {
       state.cartItemCount = action.payload
     },
-    addToCart: (state, action: PayloadAction<BooksFavorite>) => {
+    addToCart: (state, action: PayloadAction<BooksData>) => {
       state.cartItems.push(action.payload)
     },
-    removeFromCart: (state, action: PayloadAction<BooksFavorite>) => {
+    removeFromCart: (state, action: PayloadAction<BooksData>) => {
       state.cartItems = state.cartItems.filter(item => item.isbn13 !== action.payload.isbn13)
     },
   },

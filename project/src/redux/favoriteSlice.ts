@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { BooksFavorite } from '../types/interface'
+import { BooksData } from '../types/interface'
 import { FavoriteState } from '../types/interface'
 
 const favoriteSlice = createSlice({
@@ -10,7 +10,7 @@ const favoriteSlice = createSlice({
   } as FavoriteState,
 
   reducers: {
-    setFavorites: (state, action: PayloadAction<BooksFavorite[]>) => {
+    setFavorites: (state, action: PayloadAction<BooksData[]>) => {
       const updatedBooks = Array.from(action.payload)
       updatedBooks.forEach((book) => {
         const index = state.favoritesBooks.findIndex((favBook) => favBook.isbn13 === book.isbn13)
