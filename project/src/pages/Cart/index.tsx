@@ -22,10 +22,7 @@ export function Cart(): JSX.Element {
       {cartItems.map((item, index) => (
         <CartBook key={index} data={item} />
       ))}
-      <div>
-        <span>Total: {totalSum.toFixed(2)}</span>
 
-      </div>
     </div>
   )
 }
