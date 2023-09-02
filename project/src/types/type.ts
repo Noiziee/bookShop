@@ -64,3 +64,10 @@ export type PriceProps = {
 export type MainProps = {
   children: ReactNode
 }
+
+export type CounterProps = {
+  value: number
+  onChange: (newValue: number) => void
+  price: number
+  onTotalSumChange: (newTotalSum: number) => void
+}
