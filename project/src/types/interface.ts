@@ -19,6 +19,7 @@ export interface BooksState {
 
 export interface BooksData extends BooksState {
   favorite: boolean
+  count: number
 }
 
 export interface FavoriteState {

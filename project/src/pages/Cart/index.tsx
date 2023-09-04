@@ -22,7 +22,6 @@ export function Cart(): JSX.Element {
       {cartItems.map((item, index) => (
         <CartBook key={index} data={item} />
       ))}
-
     </div>
   )
 }

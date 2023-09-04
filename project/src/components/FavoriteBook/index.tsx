@@ -12,17 +12,22 @@ export function FavoriteBook({ data }: { data: BooksData }): JSX.Element {
   const [isFavorite, setIsFavorite] = useState(false)
   const dispatch = useAppDispatch()
   const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
-  function handleAddFavorite() {
-    toggleFavorite(data, isFavorite, favoritesCount, dispatch)
-    setIsFavorite(!isFavorite)
-  }
 
+  function handleAddFavorite() {
+    const newIsFavorite = !isFavorite
+    toggleFavorite(data, newIsFavorite, favoritesCount, dispatch)
+    setIsFavorite(newIsFavorite)
+    localStorage.setItem(`isFavorite_${data.isbn13}`, JSON.stringify(newIsFavorite))
+  }
   useEffect(() => {
     const storedIsFavorite = localStorage.getItem('isFavorite')
     if (storedIsFavorite) {
       setIsFavorite(JSON.parse(storedIsFavorite))
     }
   }, [])
+  if (!isFavorite) {
+    return <></>
+  }
   return (
     <div className="favorite-book">
       <img src={data.image} alt="book" />

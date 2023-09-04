@@ -11,7 +11,10 @@ import { toggleFavorite } from '../../helpers'
 import { handleAddToCart } from '../../helpers'
 export function BookInfo({ data }: { data: BooksData }): JSX.Element {
   const dispatch = useAppDispatch()
-  const [isFavorite, setIsFavorite] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(() => {
+    const storedIsFavorite = localStorage.getItem(`isFavorite_${data.isbn13}`)
+    return storedIsFavorite ? JSON.parse(storedIsFavorite) : false
+  })
   const favoritesCount = useAppSelector(state => state.favorite.favoritesCount)
   const cartItems = useAppSelector(state => state.cart.cartItems)
 
@@ -20,20 +23,16 @@ export function BookInfo({ data }: { data: BooksData }): JSX.Element {
   }
 
   function handleAddFavorite() {
-    toggleFavorite(data, isFavorite, favoritesCount, dispatch)
-    setIsFavorite(!isFavorite)
+    const newIsFavorite = !isFavorite
+    toggleFavorite(data, newIsFavorite, favoritesCount, dispatch)
+    setIsFavorite(newIsFavorite)
+    localStorage.setItem(`isFavorite_${data.isbn13}`, JSON.stringify(newIsFavorite))
   }
 
   useEffect(() => {
     localStorage.setItem('isFavorite', JSON.stringify(isFavorite))
   }, [isFavorite])
 
-  useEffect(() => {
-    const storedIsFavorite = localStorage.getItem('isFavorite')
-    if (storedIsFavorite) {
-      setIsFavorite(JSON.parse(storedIsFavorite))
-    }
-  }, [])
   return (
     <div className="book-info">
       <Title>{data.title}</Title>

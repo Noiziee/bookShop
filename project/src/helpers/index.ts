@@ -3,7 +3,8 @@ import { RootState } from '../redux/store'
 import { AnyAction } from 'redux'
 import { BooksData } from '../types/interface'
 import { setFavorites, setFavoritesCount } from '../redux/favoriteSlice'
-import { addToCart, setCartItems } from '../redux/cartSlice'
+import { setCartItems } from '../redux/cartSlice'
+
 export function toggleFavorite(
   data: BooksData,
   isFavorite: boolean,
@@ -13,12 +14,14 @@ export function toggleFavorite(
   let updatedFavorites: BooksData[] = [...JSON.parse(localStorage.getItem('favoritesBooks') || '[]')]
   let newFavoritesCount = favoritesCount
 
-  if (isFavorite) {
+  if (!isFavorite) {
     updatedFavorites = updatedFavorites.filter(book => book.isbn13 !== data.isbn13)
     newFavoritesCount -= 1
+
   } else {
     updatedFavorites = [...updatedFavorites, data]
     newFavoritesCount += 1
+
   }
 
   dispatch(setFavorites(updatedFavorites))
@@ -27,8 +30,6 @@ export function toggleFavorite(
   dispatch(setFavoritesCount(newFavoritesCount))
   localStorage.setItem('favoritesCount', String(newFavoritesCount))
 }
-
-
 export function handleAddToCart(
   data: BooksData,
   cartItems: BooksData[],
@@ -41,7 +42,6 @@ export function handleAddToCart(
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
     localStorage.setItem('cartItemCount', String(updatedCartItems.length))
     dispatch(setCartItems(updatedCartItems))
-    // dispatch(addToCart(data))
   } else {
     alert('Book already added to cart')
   }
