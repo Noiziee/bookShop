@@ -20,7 +20,7 @@ export function Cart(): JSX.Element {
   return (
     <div>
       <BackHome />
-      <Title>Cart</Title>
+      <Title>Your Cart</Title>
       {cartItems.map((item, index) => (
         <CartBook key={index} data={item} />
       ))}

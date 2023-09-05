@@ -7,6 +7,8 @@ interface NewBooksState {
   loading: boolean
   error: boolean
   searchQuery: string
+  currentPage: number,
+  limit: number
 }
 
 export const fetchNewBooks = createAsyncThunk('newBooks/fetchNewBooks', async (searchQuery?: string) => {
@@ -23,14 +25,20 @@ const newBooksSlice = createSlice({
     newBooks: [],
     loading: false,
     error: false,
-    searchQuery: ''
+    searchQuery: '',
+    currentPage: 1,
+    limit: 6,
   } as NewBooksState,
 
   reducers: {
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload
       state.newBooks = []
+
     },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload
+    }
   },
 
   extraReducers: builder => {
@@ -48,5 +56,5 @@ const newBooksSlice = createSlice({
   }
 })
 
-export const { setSearchQuery } = newBooksSlice.actions
+export const { setSearchQuery, setPage } = newBooksSlice.actions
 export const newBooksReducer = newBooksSlice.reducer
