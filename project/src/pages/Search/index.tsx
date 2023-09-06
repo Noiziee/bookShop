@@ -1,7 +1,8 @@
-import { useAppDispatch, useAppSelector } from '../../hook'
 import { useEffect } from 'react'
 
+import { useAppDispatch, useAppSelector } from '../../hook'
 import { fetchNewBooks } from '../../redux/newBooksSlice'
+
 import { Title } from '../../components/Title'
 import { Book } from '../../components/Book'
 import { Loading } from '../../components/Loading'
@@ -17,12 +18,12 @@ export function Search(): JSX.Element {
     if (searchQuery !== '') {
       dispatch(fetchNewBooks(searchQuery))
     }
-
   }, [dispatch, searchQuery])
 
   if (loading) {
     return <Loading />
   }
+
   return (
     <>
       <Title>‘{searchQuery}’ SEARCH RESULTS</Title>

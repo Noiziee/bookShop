@@ -52,7 +52,7 @@ export function CartBook({ data }: { data: BooksData }): JSX.Element {
 
         <Price price={data.price} />
         <div className="cart-book__remove">
-          <img onClick={() => handleRemoveFromCart(data)} className="cart-book__icon" src={cross} alt="cross" />
+          <img className="cart-book__icon" onClick={() => handleRemoveFromCart(data)} src={cross} alt="cross" />
         </div>
       </div>
     </div>

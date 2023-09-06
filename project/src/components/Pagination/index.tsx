@@ -1,20 +1,29 @@
 import { NavLink } from 'react-router-dom'
-import { BookProps } from '../../types/type'
+
+import { BookProps } from '../../types/interface'
+import { useEffect } from 'react'
 interface PaginationProps {
   books: BookProps[]
   limit: number
   pageNumber: number
 }
 
-export function Pagination({ books, limit, pageNumber }: PaginationProps): JSX.Element {
+export function Pagination({ books, limit }: PaginationProps): JSX.Element {
   function buildPaginationScheme() {
     const totalPages = Math.ceil(books.length / limit)
-    const scheme: (number | string)[] = [];
+    const scheme: (number | string)[] = []
     for (let i = 1; i <= totalPages; i++) {
-      scheme.push(i);
+      scheme.push(i)
     }
-    return scheme;
+    return scheme
   }
+
+  const paginationLinks = document.querySelectorAll('.pagination__link')
+  paginationLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+  })
 
   function renderPagination() {
     const pages = buildPaginationScheme()
@@ -33,6 +42,7 @@ export function Pagination({ books, limit, pageNumber }: PaginationProps): JSX.E
       )
     })
   }
+
   return (
     <div className="pagination">
       <ul className="pagination__list">
@@ -40,6 +50,4 @@ export function Pagination({ books, limit, pageNumber }: PaginationProps): JSX.E
       </ul>
     </div>
   )
-
 }
-

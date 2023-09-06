@@ -9,7 +9,7 @@ import { Loading } from '../../components/Loading'
 import { Subscribe } from '../../components/Subscribe'
 import { Pagination } from '../../components/Pagination'
 import { togglePage } from '../../helpers'
-
+import { BooksData } from '../../types/interface'
 
 export function Books() {
   const dispatch = useAppDispatch()
@@ -17,6 +17,7 @@ export function Books() {
   const { pageNumber } = useParams()
   const navigate = useNavigate()
   const pageNumberCount: number = Number(pageNumber)
+
   useEffect(() => {
     setPage(pageNumberCount)
   }, [dispatch, pageNumberCount])
@@ -39,13 +40,10 @@ export function Books() {
     const startIndex = (currentPage - 1) * limit
     const endIndex = startIndex + limit
 
-    return newBooks.slice(startIndex, endIndex).map((book) => (
+    return newBooks.slice(startIndex, endIndex).map((book: BooksData) => (
       <Book key={book.isbn13} data={book} />
     ))
   }
-  // function renderBooks() {
-  //   return newBooks.map((book) => <Book key={book.isbn13} data={book} />)
-  // }
 
   return (
     <>

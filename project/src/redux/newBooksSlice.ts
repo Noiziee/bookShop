@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { requestNewBooks, requestBook } from '../services/books'
-import { Book } from '../types/type'
+import { BooksData } from '../types/interface'
 
 interface NewBooksState {
-  newBooks: Book[]
+  newBooks: BooksData[]
   loading: boolean
   error: boolean
   searchQuery: string
@@ -13,8 +13,8 @@ interface NewBooksState {
 
 export const fetchNewBooks = createAsyncThunk('newBooks/fetchNewBooks', async (searchQuery?: string) => {
   const { books } = await requestNewBooks(searchQuery)
-  const listByIsbn13 = books.map((book) => book.isbn13)
-  const bookDetailsPromises = listByIsbn13.map((isbn13) => requestBook(isbn13))
+  const listByIsbn13 = books.map((book: BooksData) => book.isbn13)
+  const bookDetailsPromises = listByIsbn13.map((isbn13: string) => requestBook(isbn13))
   const newBooks = await Promise.all(bookDetailsPromises)
   return newBooks
 })
@@ -45,7 +45,7 @@ const newBooksSlice = createSlice({
     builder.addCase(fetchNewBooks.pending, state => {
       state.loading = true
     })
-    builder.addCase(fetchNewBooks.fulfilled, (state, action: PayloadAction<Book[]>) => {
+    builder.addCase(fetchNewBooks.fulfilled, (state, action: PayloadAction<BooksData[]>) => {
       state.loading = false
       state.newBooks = action.payload
     })

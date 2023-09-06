@@ -1,4 +1,4 @@
-import { ContainerProps } from '../../types/type'
+import { ContainerProps } from '../../types/interface'
 
 export function Container({ children }: ContainerProps): JSX.Element {
   return (

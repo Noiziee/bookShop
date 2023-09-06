@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { Rating } from '../Rating'
 import { Price } from '../Price'
-import { NavLink } from 'react-router-dom'
 import favorites from '../../images/favorites.svg'
 import { useAppDispatch, useAppSelector } from '../../hook'
 import { BooksData } from '../../types/interface'

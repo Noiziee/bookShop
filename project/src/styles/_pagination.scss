@@ -1,0 +1,34 @@
+.pagination {
+  margin: 2rem auto;
+
+  &__list {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__item {
+    cursor: pointer;
+
+
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5rem;
+    border: 1px solid #e7e7e7;
+    border-radius: 10%;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #02b4fa;
+      color: #fff;
+    }
+  }
+
+  &__link.active {
+    color: #fff;
+    background-color: #02b4fa;
+  }
+}

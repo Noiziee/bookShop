@@ -1,7 +1,7 @@
 import { client } from '../utils/clients'
+
 import { newBooksEndPoint, bookEndPoint } from '../api'
-import { Books } from '../types/type'
-import { BooksState } from '../types/interface'
+import { BooksState, Books } from '../types/interface'
 
 
 export const requestNewBooks = async (searchQuery?: string): Promise<Books> => {

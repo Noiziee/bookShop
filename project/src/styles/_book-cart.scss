@@ -23,6 +23,12 @@
 
   &__icon {
     cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+
   }
 
   &__title {

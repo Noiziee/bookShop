@@ -28,9 +28,9 @@ export function Counter({ initialValue = 1, onChange }: CounterProps): JSX.Eleme
 
   return (
     <div className="mt-5">
-      <button className="btn btn-danger" onClick={decrement}>-</button>
+      <button className="btn" onClick={decrement}>-</button>
       <span className="mx-4">{count}</span>
-      <button className="btn btn-success" onClick={increment}>+</button>
+      <button className="btn" onClick={increment}>+</button>
     </div>
   )
 }

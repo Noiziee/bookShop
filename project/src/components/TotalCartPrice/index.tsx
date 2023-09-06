@@ -1,6 +1,7 @@
 import { useAppSelector } from '../../hook'
 import { BooksData } from '../../types/interface'
 import { Button } from '../Button'
+
 export function TotalCartPrice(): JSX.Element {
   const cartItems = useAppSelector(state => state.cart.cartItems)
   const vat: number = 12.50
@@ -17,15 +18,16 @@ export function TotalCartPrice(): JSX.Element {
     }
     return 0
   }
+
   function finalPrice(): number {
     const booksSum = calculateTotalPrice(cartItems)
     const sumTotal = booksSum + vat
     return parseFloat(sumTotal.toFixed(2))
   }
+
   const totalCartPrice = calculateTotalPrice(cartItems)
-  function handleClick() {
-    console.log(totalCartPrice, vat, finalPrice())
-  }
+
+
   return (
     <div className="cart-total">
       <div className="cart-total__sum">
@@ -37,7 +39,7 @@ export function TotalCartPrice(): JSX.Element {
       <div className="cart-total__total-price">
         <span>total:</span><span>$ {finalPrice()}</span>
       </div>
-      <div className="cart-total__btn"><Button type="submit" onClick={handleClick}>Check out</Button></div>
+      <div className="cart-total__btn"><Button type="submit">Check out</Button></div>
     </div>
   )
 }

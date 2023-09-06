@@ -1,4 +1,4 @@
-import { RatingProps } from '../../types/type'
+import { RatingProps } from '../../types/interface'
 import star from '../../images/star.svg'
 import mutedStar from '../../images/mutedStar.svg'
 

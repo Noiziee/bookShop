@@ -9,6 +9,7 @@ import { NavBookInfo } from '../NavBookInfo'
 import favorites from '../../images/favorites.svg'
 import { toggleFavorite } from '../../helpers'
 import { handleAddToCart } from '../../helpers'
+
 export function BookInfo({ data }: { data: BooksData }): JSX.Element {
   const dispatch = useAppDispatch()
   const [isFavorite, setIsFavorite] = useState(() => {

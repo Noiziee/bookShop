@@ -1,6 +1,5 @@
 import arrow from '../../images/arrow.svg'
 
-
 export function BackHome(): JSX.Element {
   return (
     <div className="back-home mt-4">

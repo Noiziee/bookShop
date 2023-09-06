@@ -1,4 +1,4 @@
-import { TitleProps } from '../../types/type'
+import { TitleProps } from '../../types/interface'
 
 export function Title(props: TitleProps): JSX.Element {
   return (

@@ -4,10 +4,10 @@ import { Rating } from '../Rating'
 import { Price } from '../Price'
 import { NavLink } from 'react-router-dom'
 
-import { BookProps } from '../../types/type'
+import { BookProps } from '../../types/interface'
 
 export function Book({ data }: BookProps): JSX.Element {
-  const [randomColor, setRandomColor] = useState<string>(getRandomColor())
+  const [randomColor] = useState<string>(getRandomColor())
   function getRandomColor(): string {
     const letters = '0123456789ABCDEF'
     let color = '#'
@@ -22,7 +22,9 @@ export function Book({ data }: BookProps): JSX.Element {
       <div className="book__color" style={{ backgroundColor: randomColor }} >
         <img className="book__img" src={data.image} alt="book" />
       </div>
-      <NavLink to={`/${data.isbn13}`} className="book__title">{data.title}</NavLink>
+      <div className="book__title">
+        <NavLink className="book__title-link" to={`/${data.isbn13}`}>{data.title}</NavLink>
+      </div>
       <div className="book__info">
         <span className="book__author">{`by ${data.authors}, ${data.publisher} ${data.year}`}</span>
       </div>

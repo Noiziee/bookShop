@@ -1,14 +1,18 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
+
 import { Title } from '../Title'
+
 export function Subscribe(): JSX.Element {
   const [email, setEmail] = useState<string>('')
   function handleEmailChange(e: ChangeEvent<HTMLInputElement>): void {
     setEmail(e.target.value)
   }
+
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault()
     setEmail('')
   }
+
   return (
     <div className="subscribe">
       <div className="subscribe__inner">

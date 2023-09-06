@@ -1,8 +1,9 @@
-import '../../styles/App.scss'
 import { Provider } from 'react-redux'
 import { store } from '../../redux/store'
 import { router } from '../../router'
 import { RouterProvider } from 'react-router-dom'
+
+import '../../styles/App.scss'
 
 export function App() {
   return (
